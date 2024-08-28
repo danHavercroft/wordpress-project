@@ -34,12 +34,12 @@ jobs:
 
     - name: Run LEMP Setup
       run: |
-        ssh -i private_key -o StrictHostKeyChecking=no -p ${{ secrets.PORT }} ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} 'sudo sh/wordpress-project/lemp-setup.sh'
+        ssh -i private_key -o StrictHostKeyChecking=no -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} 'sudo sh/wordpress-project/lemp-setup.sh'
 
     - name: Run certbot install
       run: |
-        ssh -i private_key -o StrictHostKeyChecking=no -p ${{ secrets.PORT }} ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} 'sudo sh/wordpress-project/certbot-ssl-install.sh'
+        ssh -i private_key -o StrictHostKeyChecking=no -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} 'sudo sh/wordpress-project/certbot-ssl-install.sh'
 
     - name: Run Wordpress install
       run: |
-        ssh -i private_key -o StrictHostKeyChecking=no -p ${{ secrets.PORT }} ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} 'sudo sh/wordpress-project/wordpress-install.sh'
+        ssh -i private_key -o StrictHostKeyChecking=no -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} 'sudo sh/wordpress-project/wordpress-install.sh'
