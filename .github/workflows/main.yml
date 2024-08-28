@@ -31,4 +31,4 @@ jobs:
 
     - name: Copy files to VM
       run: |
-        scp -r -i private_key -o StrictHostKeyChecking=no -P ${{ secrets.PORT }} "${PWD}" ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:~
+        scp -r -i private_key -o StrictHostKeyChecking=no -P ${{ secrets.SSH_PORT }} "${PWD}" ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}:~
