@@ -19,8 +19,8 @@ sudo mv /root/wordpress-project/nginx.conf /etc/nginx/conf.d/nginx.conf
 my_domain=wordpress.danhavercroft.co.uk
 elastic_ip=$(curl -s icanhazip.com)
 
-CF_API=
-CF_ZONE_ID=
+CF_API=REPLACE_CF_API
+CF_ZONE_ID=REPLACE_CF_ZONE_ID
 
 curl --request POST \
   --url https://api.cloudflare.com/client/v4/zones/$CF_ZONE_ID/dns_records \
