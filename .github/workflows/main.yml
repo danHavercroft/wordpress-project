@@ -1,4 +1,4 @@
-name: Test and Deploy Bash Script
+name: Deploy server infrastructure.
 
 on:
   push:
