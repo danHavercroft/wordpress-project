@@ -27,8 +27,19 @@ jobs:
       run: |
         sed -i 's/REPLACE_CF_API/${{ secrets.CF_API }}/g' ./lemp-setup.sh
         sed -i 's/REPLACE_CF_ZONE_ID/${{ secrets.CF_ZONE_ID }}/g' ./lemp-setup.sh
-        
 
     - name: Copy files to VM
       run: |
         scp -r -i private_key -o StrictHostKeyChecking=no -P ${{ secrets.SSH_PORT }} "${PWD}" ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}:~
+
+    - name: Run LEMP Setup
+      run: |
+        ssh -i private_key -o StrictHostKeyChecking=no -p ${{ secrets.PORT }} ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} 'sudo sh/wordpress-project/lemp-setup.sh'
+
+    - name: Run certbot install
+      run: |
+        ssh -i private_key -o StrictHostKeyChecking=no -p ${{ secrets.PORT }} ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} 'sudo sh/wordpress-project/certbot-ssl-install.sh'
+
+    - name: Run Wordpress install
+      run: |
+        ssh -i private_key -o StrictHostKeyChecking=no -p ${{ secrets.PORT }} ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} 'sudo sh/wordpress-project/wordpress-install.sh'
